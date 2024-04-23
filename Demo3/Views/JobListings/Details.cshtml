@@ -1,0 +1,89 @@
+﻿@model Demo3.Models.JobListing
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>JobListing</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Qualifications)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Qualifications)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DeadLine)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DeadLine)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Company.Name)
+        </dd>
+       @*  <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User.Id)
+        </dd> *@
+    </dl>
+</div>
+
+<div>
+    <h4>Job Applications</h4>
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>JobSeeker</th>
+                <th>
+                    ApplicationTime
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var jobApplication in Model.JobApplication)
+            {
+                <tr>
+                   
+                    <td>
+                        @Html.DisplayFor(model => jobApplication.JobSeeker.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => jobApplication.ApplicationTime)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a type="button" class="btn btn-success" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a type="button" class="btn btn-dark" asp-action="Index">Back to List</a>
+</div>

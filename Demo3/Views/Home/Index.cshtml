@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Demo3.Models.JobListing>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@* <div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Find your dream job here!</p>
+ *@
+<div class="text-center">
+    <h1 class="display-4" style="font-family: 32px 'Sans Serif Collection'">Welcome to TOP CV</h1>
+    <p>Vietnam's leading job recruitment website</p>
+    <form asp-action="Index">
+        <p>
+            Job title: <input type="text" name="searchString">
+            <input type="submit" value="Search" />
+        </p>
+    </form>
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Qualifications</th>
+                    <th>Deadline</th>
+                    <th>Salary</th>
+                    <th>Company</th>
+                    <th>Address</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Qualifications)</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DeadLine)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Salary)$
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Company.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Company.Address)
+                        </td>
+                        @* <td><a href="#" class="btn btn-success">Submit CV</a></td> *@
+                        <td><a asp-controller="JobApplications" asp-action="CreateFromHome" asp-route-jobListingId="@item.Id" class="btn btn-success">Submit CV</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No job listings found.</p>
+    }
+</div>
+
+<!-- About Section -->
+<div class="w3-container w3-padding-32" id="about">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+    <p>
+        Employers can access a rich source of candidates with more than 10 million resumes and more than 50 million visits per year.
+        Employer accounts are integrated with smart features, making it convenient to manage postings, manage profiles and track candidates, and application volume.
+        The privilege of 12++ free postings per year helps employers optimize costs and recruitment processes
+    </p>
+</div>
+
+<div class="w3-row-padding w3-grayscale">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+        <img src="https://www.w3schools.com/w3images/team2.jpg" alt="John" style="width:100%">
+        <h3>John Doe</h3>
+        <p class="w3-opacity">CEO & Founder</p>
+        <p>Employers can access a rich source of candidates with more than 10 million resumes and more than 50 million visits per year.</p>
+        <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+        <img src="https://www.w3schools.com/w3images/team1.jpg" alt="Jane" style="width:100%">
+        <h3>Jane Doe</h3>
+        <p class="w3-opacity">Architect</p>
+        <p>Employer accounts are integrated with smart features, making it convenient to manage postings, manage profiles and track candidates, and application volume.</p>
+        <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+        <img src="https://www.w3schools.com/w3images/team3.jpg" alt="Mike" style="width:100%">
+        <h3>Mike Ross</h3>
+        <p class="w3-opacity">Architect</p>
+        <p>The privilege of 12++ free postings per year helps employers optimize costs and recruitment processes.</p>
+        <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+        <img src="https://www.w3schools.com/w3images/team4.jpg" alt="Dan" style="width:100%">
+        <h3>Dan Star</h3>
+        <p class="w3-opacity">Architect</p>
+        <p>The customer service team now focuses on vieclam24h.vn, being more professional & dedicated, to bring the best experience and maximum efficiency.</p>
+        <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+    </div>
+</div>
+<!-- Contact Section -->
+<div class="w3-container w3-padding-32" id="contact">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
+    <p>Please leave your information, we will contact you as soon as possible.</p>
+    <form action="" target="_blank">
+        <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+        <input class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="Email">
+        <input class="w3-input w3-section w3-border" type="text" placeholder="Subject" required name="Subject">
+        <input class="w3-input w3-section w3-border" type="text" placeholder="Comment" required name="Comment">
+        <button class="w3-button w3-black w3-section" type="">
+            <i class="fa fa-paper-plane"></i> ADD FOR ADVISE
+        </button>
+    </form>
+</div>
+<br />
+<br />
